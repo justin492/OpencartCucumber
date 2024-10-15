@@ -42,6 +42,9 @@ public class AccountRegistrationPage extends BasePage {
 		
 		@FindBy(xpath="//label[normalize-space()='Yes']")
 		WebElement YesOption;
+		
+		@FindBy(xpath="//h1[normalize-space()='Register Account']")
+		WebElement RegisterAccountHeader;
 			
 
 		public void setFirstName(String fname) {
@@ -101,6 +104,13 @@ public class AccountRegistrationPage extends BasePage {
 			YesOption.click();
 		}
 		
-
+		public String getRegisterPageTitle()
+		{
+			try {
+			return (RegisterAccountHeader.getText());
+			}catch(Exception e) {
+				return (e.getMessage());
+			}
+		}
 		
 }

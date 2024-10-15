@@ -36,3 +36,33 @@ Feature: Account Registration
     When the user clicks on SubscribeOrUnsubscribeOption in My Account page
     Then the user should see the YesOption is Selected by default
     
+    @sanity
+  Scenario: No option is selected for Newsletter field
+    Given the user navigates to Register Account page
+    When the user enters the details into below fields
+      | firstName | John       |
+      | lastName  | Kenedy     |
+      | telephone | 1234567890 |
+      | password  | test@123   |
+    And the user clicks on No radio option for Newsletter
+    And the user selects Privacy Policy
+    And the user clicks on Continue button
+    Then the user account should get created successfully
+    When the user clicks on Continue button on Account Success page
+    Then the user should be redirected to the My Account page
+    When the user clicks on SubscribeOrUnsubscribeOption in My Account page
+    Then the user should see the NoOption is Selected by default
+    
+    @sanity
+    Scenario: Different ways of Navigating Register Account Page
+    	When the user navigates to Register Account page
+    	Then the user should be taken to Register Account page
+    	When the user click on My Account DropMenu
+    	And the user click on Login Option
+    	And the user click on continue button inside New customer box 
+    	Then the user should be taken to Register Account page
+    	When the user click on My Account DropMenu
+    	And the user click on Login Option
+    	And the user click on Register Link from Rightside Menu
+    	Then the user should be taken to Register Account page 
+    
