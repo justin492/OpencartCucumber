@@ -32,11 +32,19 @@ public class RegistrationSteps {
          regpage = new AccountRegistrationPage(BaseClass.getDriver()); 
      }
      
-	@Given("the user navigates to Register Account page")
-	public void user_navigates_to_register_account_page() {
+	@Given("the user clicks on Myaccount drop Menu")
+	public void the_user_clicks_on_Myaccount_drop_Menu() {
 	
 		hp=new HomePage(BaseClass.getDriver());
     	hp.clickMyAccount();
+       
+                   
+	}
+	
+	@When("the user clicks on Register option")
+	public void the_user_clicks_on_Register_option() {
+	
+		
         hp.clickRegister();
                    
 	}
@@ -118,8 +126,29 @@ public class RegistrationSteps {
 	Assert.assertTrue("Yes option is not selected by default",SubscriptionPage.isyesoptionselected());
 	}
 	
-		
+	@When ("the user click on Login Option")
+	public void the_user_click_on_Login_Option() {
+		regpage.clickLogin();
+	}
 	
+	@When ("the_user_click_on_continue_button_inside_New_customer_box")
+	public void the_user_click_on_continue_button_inside_New_customer_box() {
+		lp=new LoginPage(BaseClass.getDriver());
+		lp.clickNewCustomerbtn();
+	}
+	
+	@When ("the user click on Register Link from Rightside Menu")
+	public void the_user_click_on_Register_Link_from_Rightside_Menu() {
+		hp.clickRegister();
+	}
+	
+	
+	@Then ("the user should be taken to Register Account page")
+	public void the_user_should_be_taken_to_Register_Account_page() {
+	
+		String Title=regpage.getRegisterPageTitle();
+		Assert.assertEquals(Title, "Register Account");
+	}
 	
 }
  

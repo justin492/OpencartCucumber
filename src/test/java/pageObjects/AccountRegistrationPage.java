@@ -45,6 +45,9 @@ public class AccountRegistrationPage extends BasePage {
 		
 		@FindBy(xpath="//h1[normalize-space()='Register Account']")
 		WebElement RegisterAccountHeader;
+		
+		@FindBy(linkText = "Login")   
+		WebElement linkLogin;
 			
 
 		public void setFirstName(String fname) {
@@ -86,6 +89,10 @@ public class AccountRegistrationPage extends BasePage {
 			//btnContinue.click();
 			js.executeScript("arguments[0].click();",btnContinue);
 
+		}
+		
+		public void clickLogin() {
+			linkLogin.click();
 		}
 
 		
