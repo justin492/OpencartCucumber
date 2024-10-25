@@ -1,6 +1,8 @@
 package stepDefinitions;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -91,9 +93,21 @@ public class RegistrationSteps {
 	@Then("An error message should be displayed for the mandatory fields")
 	public void An_error_message_should_be_displayed_for_the_mandatory_fields() {
 		
-		String mandatoryerrormsg=regpage.verifyMandatoryFieldErrorMessages();
-		Assert.assertEquals(mandatoryerrormsg, "Warning: You must agree to the Privacy Policy!");
+		Map<String,String> actualErrors=regpage.getAllErrorMessages();
+		Map<String,String> Expectederrors=new HashMap<>();
+		Expectederrors.put("FirstName", "First Name must be between 1 and 32 characters!");
+		Expectederrors.put("LastName", "Last Name must be between 1 and 32 characters!");
+		Expectederrors.put("Email", "E-Mail Address does not appear to be valid!");
+		Expectederrors.put("Telephone", "Telephone must be between 3 and 32 characters!");
+		Expectederrors.put("Password", "Password must be between 4 and 20 characters!");
+		Expectederrors.put("Privacypolicy"," Warning: You must agree to the Privacy Policy!");
+		for(Map.Entry<String, String> entry:Expectederrors.entrySet())
+		{
+		
+			Assert.assertEquals(entry.getValue().trim(), actualErrors.get(entry.getKey()).trim());
 		}
+		
+	}
 	
 	@When("the user clicks on Yes radio option for Newsletter")
 	public void the_user_clicks_on_Yes_radio_option_for_Newsletter() {
@@ -131,10 +145,10 @@ public class RegistrationSteps {
 		regpage.clickLogin();
 	}
 	
-	@When ("the_user_click_on_continue_button_inside_New_customer_box")
+	@When("the user click on continue button inside New customer box")
 	public void the_user_click_on_continue_button_inside_New_customer_box() {
-		lp=new LoginPage(BaseClass.getDriver());
-		lp.clickNewCustomerbtn();
+	    lp = new LoginPage(BaseClass.getDriver());
+	    lp.clickNewCustomerbtn();
 	}
 	
 	@When ("the user click on Register Link from Rightside Menu")
@@ -149,6 +163,19 @@ public class RegistrationSteps {
 		String Title=regpage.getRegisterPageTitle();
 		Assert.assertEquals(Title, "Register Account");
 	}
+	
+	@When ("the user enters the details into below fields with Mismatched Password and Confirm Password fields")
+	public void the_user_enters_the_details_into_below_fields_with_Mismatched_Password_and_Confirm_Password_fields(DataTable dataTable) {
+	Map<String,String> dataMap=dataTable.asMap(String.class,String.class);
+	regpage.setFirstName(dataMap.get("firstName"));
+	regpage.setLastName(dataMap.get("lastName"));
+	regpage.setEmail(BaseClass.randomAlphaNumeric()+"@gmail.com");
+	regpage.setTelephone(dataMap.get("telephone"));
+	regpage.setPassword(dataMap.get("password"));
+	regpage.setConfirmPassword(dataMap.get("confirm password"));
+	
+	}
+	
 	
 }
  

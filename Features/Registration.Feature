@@ -13,7 +13,7 @@ Feature: Account Registration
     And the user clicks on Continue button
     Then the user account should get created successfully
     
-  @regression
+  @sanity
   Scenario: Register without entering any information
     Given the user clicks on Myaccount drop Menu
     When the user clicks on Register option
@@ -21,7 +21,7 @@ Feature: Account Registration
     And the user clicks on Continue button
     Then An error message should be displayed for the mandatory fields
     
-  @sanity
+  @functional
   Scenario: Yes option is selected for Newsletter field
     Given the user clicks on Myaccount drop Menu
     When the user clicks on Register option
@@ -57,7 +57,7 @@ Feature: Account Registration
    # When the user clicks on SubscribeOrUnsubscribeOption in My Account page
    # Then the user should see the NoOption is Selected by default
     
-    @sanity
+    @functional
     Scenario: Different ways of Navigating Register Account Page
     	Given the user clicks on Myaccount drop Menu
     	When the user clicks on Register option
@@ -70,4 +70,17 @@ Feature: Account Registration
     	When the user click on Login Option
     	And the user click on Register Link from Rightside Menu
     	Then the user should be taken to Register Account page 
+    	
+    	@sanity
+    	Scenario: Entering different Passwords in Password and Confirm Password fields
+    	Given the user clicks on Myaccount drop Menu
+    	When the user clicks on Register option
+    	And the user enters the details into below fields with Mismatched Password and Confirm Password fields
+    	| firstName 				| John       |
+      | lastName  				| Kenedy     |
+      | telephone 				| 1234567890 |
+      | password  				| test@123   |
+      | confirm password	| abcde			 |
+      And the user clicks on Continue button
+      Then the warning Message Password confirmation does not match password! should be displayed under Confirm Password fields
     

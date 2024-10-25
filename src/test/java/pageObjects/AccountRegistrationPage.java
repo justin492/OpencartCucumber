@@ -1,5 +1,10 @@
 package pageObjects;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,7 +43,7 @@ public class AccountRegistrationPage extends BasePage {
 		WebElement btnContinue;
 		
 		@FindBy(xpath = "//div[text()=' Warning: You must agree to the Privacy Policy!']")
-		WebElement FieldErrorMessage;
+		WebElement PrivacypolicyErrorMsg;
 		
 		@FindBy(xpath="//label[normalize-space()='Yes']")
 		WebElement YesOption;
@@ -48,7 +53,24 @@ public class AccountRegistrationPage extends BasePage {
 		
 		@FindBy(linkText = "Login")   
 		WebElement linkLogin;
-			
+		
+		@FindBy(xpath="//div[contains(text(),'First Name must be between 1 and 32 characters!')]")
+		WebElement FirstNameErrorMsg;
+		
+		@FindBy(xpath="//div[contains(text(),'Last Name must be between 1 and 32 characters!')]")
+		WebElement LastNameErrorMsg;
+		
+		@FindBy(xpath="//div[contains(text(),'E-Mail Address does not appear to be valid!')]")
+		WebElement EmailErrorMsg;
+		
+		@FindBy(xpath="//div[contains(text(),'Telephone must be between 3 and 32 characters!')]")
+		WebElement TelephoneErrorMsg;
+		
+		@FindBy(xpath="//div[contains(text(),'Password must be between 4 and 20 characters!')]")
+		WebElement PasswordErrorMsg;
+		
+		@FindBy(xpath="//div[@class='text-danger']")
+		WebElement PasswordMismatchError;	
 
 		public void setFirstName(String fname) {
 			txtFirstname.sendKeys(fname);
@@ -96,13 +118,16 @@ public class AccountRegistrationPage extends BasePage {
 		}
 
 		
-		public String verifyMandatoryFieldErrorMessages()   // MyAccount Page heading display status
+		public Map<String,String> getAllErrorMessages()   // MyAccount Page heading display status
 		{
-			try {
-				return (FieldErrorMessage.getText());
-			} catch (Exception e) {
-				return (e.getMessage());
-			}
+			Map<String,String> errorMessages=new HashMap<>();
+			errorMessages.put("FirstName", FirstNameErrorMsg.getText());
+			errorMessages.put("LastName", LastNameErrorMsg.getText());
+			errorMessages.put("Email", EmailErrorMsg.getText());
+			errorMessages.put("Telephone", TelephoneErrorMsg.getText());
+			errorMessages.put("Password", PasswordErrorMsg.getText());
+			errorMessages.put("Privacypolicy",PrivacypolicyErrorMsg.getText());
+			return errorMessages;
 			
 		}
 		
@@ -118,6 +143,18 @@ public class AccountRegistrationPage extends BasePage {
 			}catch(Exception e) {
 				return (e.getMessage());
 			}
+		}
+		
+		public Set<String> getplaceholderNames()
+		{
+			Set<String> placeholder=new HashSet<>();
+			placeholder.add(txtFirstname.getAttribute("placeholder"));
+			placeholder.add(txtLasttname.getAttribute("placeholder"));
+			placeholder.add(txtEmail.getAttribute("placeholder"));
+			placeholder.add(txtTelephone.getAttribute("placeholder"));
+			placeholder.add(txtPassword.getAttribute("placeholder"));
+			placeholder.add(txtConfirmPassword.getAttribute("placeholder"));
+			return placeholder;
 		}
 		
 }

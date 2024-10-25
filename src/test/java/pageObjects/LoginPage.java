@@ -1,13 +1,15 @@
 package pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-
+	JavascriptExecutor js;
 	public LoginPage(WebDriver driver) {
 		super(driver);
+		this.js=(JavascriptExecutor)driver;
 	}
 
 	@FindBy(xpath = "//input[@id='input-email']")
@@ -40,7 +42,8 @@ public class LoginPage extends BasePage {
 
 	public void clickNewCustomerbtn()
 	{
-		NewCustomerbtn.click();
+		//NewCustomerbtn.click();
+		js.executeScript("arguments[0].click();",NewCustomerbtn);
 	}
 	
 	public void clickRegisterlink()
