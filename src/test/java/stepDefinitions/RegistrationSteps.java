@@ -1,8 +1,10 @@
 package stepDefinitions;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -176,6 +178,54 @@ public class RegistrationSteps {
 	
 	}
 	
+	@Then ("Proper placeholder texts should be available in all the fields")
+	public void Proper_placeholder_texts_should_be_available_in_all_the_fields()
+	{
+		Set <String>actualplaceholderName=regpage.getplaceholderNames();
+		Set <String>ExpectedplaceholderName=new HashSet<String>();
+		ExpectedplaceholderName.add("First Name");
+		ExpectedplaceholderName.add("Last Name");
+		ExpectedplaceholderName.add("E-Mail");
+		ExpectedplaceholderName.add("Telephone");
+		ExpectedplaceholderName.add("Password");
+		ExpectedplaceholderName.add("Password Confirm");
+		
+		Assert.assertEquals(actualplaceholderName,ExpectedplaceholderName);
+		
+		Set <String>Missingplaceholders=new HashSet<>(ExpectedplaceholderName);
+		Missingplaceholders.removeAll(actualplaceholderName);
+		if(!Missingplaceholders.isEmpty())
+		{
+			Assert.fail();
+		}
+		
+		Set <String>Extraplaceholders=new HashSet<>(actualplaceholderName);
+		Extraplaceholders.removeAll(ExpectedplaceholderName);
+		if(!Extraplaceholders.isEmpty())
+		{
+			Assert.fail();
+		}
+		
+		
+	}
 	
+	@When ("the user enters the details into below fields but does not follow Password complexity")
+	public void the_user_enters_the_details_into_below_fields_but_does_not_follow_Password_complexity(DataTable dataTable) {
+	Map<String,String> dataMap=dataTable.asMap(String.class,String.class);
+	regpage.setFirstName(dataMap.get("firstName"));
+	regpage.setLastName(dataMap.get("lastName"));
+	regpage.setEmail(BaseClass.randomAlphaNumeric()+"@gmail.com");
+	regpage.setTelephone(dataMap.get("telephone"));
+	regpage.setPassword(dataMap.get("password"));
+	regpage.setConfirmPassword(dataMap.get("confirm password"));
+	
+	}
+	
+	@Then("the warning Message should be displayed for not following password complexity type")
+	public void the_warning_Message_should_be_displayed_for_not_following_password_complexity_type()
+	{
+		boolean Registered=successpage.isAccountCreatedMsgDisplayed();
+		Assert.assertEquals(Registered, false);
+	}
 }
  

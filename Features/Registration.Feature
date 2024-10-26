@@ -84,3 +84,23 @@ Feature: Account Registration
       And the user clicks on Continue button
       Then the warning Message Password confirmation does not match password! should be displayed under Confirm Password fields
     
+    @functional
+    Scenario: Validating account fields having proper placeholders name
+    Given the user clicks on Myaccount drop Menu
+    When the user clicks on Register option
+    Then Proper placeholder texts should be available in all the fields
+    
+    @sanity
+    Scenario: Validating Passwords fields following Password Complexity Standards
+    Given the user clicks on Myaccount drop Menu
+    When the user clicks on Register option
+    And the user enters the details into below fields but does not follow Password complexity
+    	| firstName 				| John       |
+      | lastName  				| Kenedy     |
+      | telephone 				| 1234567890 |
+      | password  				| abcde   	 |
+      | confirm password	| abcde			 |
+     And the user selects Privacy Policy
+     And the user clicks on Continue button
+     Then the warning Message should be displayed for not following password complexity type
+    
