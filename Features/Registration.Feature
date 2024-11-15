@@ -103,4 +103,11 @@ Feature: Account Registration
      And the user selects Privacy Policy
      And the user clicks on Continue button
      Then the warning Message should be displayed for not following password complexity type
-    
+    @sanity
+    Scenario: Leading and trailing spaces should be removed on sucessful account creation
+    Given the user clicks on Myaccount drop Menu
+    When the user clicks on Register option
+    And the user enters valid details with leading and trailing spaces on respective fields
+    And the user selects Privacy Policy
+    And the user clicks on Continue button
+    Then user should check there is no any spaces contains on respective fields on edit account information page
