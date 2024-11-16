@@ -157,4 +157,8 @@ public class AccountRegistrationPage extends BasePage {
 			return placeholder;
 		}
 		
+		public boolean getprivacypolicy()
+		{
+			return chkdPolicy.isSelected();
+		}
 }

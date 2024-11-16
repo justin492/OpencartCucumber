@@ -111,3 +111,10 @@ Feature: Account Registration
     And the user selects Privacy Policy
     And the user clicks on Continue button
     Then user should check there is no any spaces contains on respective fields on edit account information page
+    
+    @Master
+    Scenario: Checking Privacy policy is not selected by default
+    Given the user clicks on Myaccount drop Menu
+    When the user clicks on Register option
+    Then the privacy policy should not selected by default
+    

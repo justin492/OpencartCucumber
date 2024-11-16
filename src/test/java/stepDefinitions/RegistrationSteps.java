@@ -248,5 +248,13 @@ public class RegistrationSteps {
 		boolean Registered=successpage.isAccountCreatedMsgDisplayed();
 		Assert.assertEquals(Registered, false);
 	}
+	
+	@Then("the privacy policy should not selected by default")
+	public void the_privacy_policy_should_not_selected_by_default()
+	{
+		BaseClass.getLogger().info("Checking privacy policy is selected by default or not");
+		boolean checkprivacypolicy=regpage.getprivacypolicy();
+		Assert.assertEquals(checkprivacypolicy,false);
+	}
 }
  
