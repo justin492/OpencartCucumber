@@ -20,7 +20,7 @@ public class Hooks {
 	 Properties p;
      
 	@Before
-    public void setup() throws IOException
+    public void setup() throws IOException, InterruptedException
     {
     	driver=BaseClass.initilizeBrowser();
     	    	
@@ -31,12 +31,13 @@ public class Hooks {
 	}
 		
     
-   // @After
-    //public void tearDown() {
+    @After
+    public void tearDown() throws IOException, InterruptedException {
         		
      //  driver.quit();
-       
-   // }
+       Runtime.getRuntime().exec("cmd /c start Stop_dockergrid.bat");
+      Thread.sleep(15000);
+    }
     
 
     @AfterStep

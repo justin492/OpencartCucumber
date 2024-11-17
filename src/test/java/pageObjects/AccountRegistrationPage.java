@@ -161,4 +161,14 @@ public class AccountRegistrationPage extends BasePage {
 		{
 			return chkdPolicy.isSelected();
 		}
+		
+		public String getpasswordvalue()
+		{
+			return txtPassword.getAttribute("type");
+		}
+		
+		public String getconfirmpasswordvalue()
+		{
+			return txtConfirmPassword.getAttribute("type");
+		}
 }

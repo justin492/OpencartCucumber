@@ -1,8 +1,10 @@
 package stepDefinitions;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -30,6 +32,7 @@ public class RegistrationSteps {
      AccountSuccessPage successpage;
      MyAccountPage AccountPage;
      NewslettersubcriptionPage SubscriptionPage;
+     Properties p;
      public RegistrationSteps() {
     	 
          regpage = new AccountRegistrationPage(BaseClass.getDriver()); 
@@ -255,6 +258,26 @@ public class RegistrationSteps {
 		BaseClass.getLogger().info("Checking privacy policy is selected by default or not");
 		boolean checkprivacypolicy=regpage.getprivacypolicy();
 		Assert.assertEquals(checkprivacypolicy,false);
+	}
+	@When("the user enters values in password and confirm password fields")
+	public void the_user_enters_values_in_password_and_confirm_password_fields() throws IOException
+	{
+	  p=BaseClass.getProperties();
+	  regpage.setPassword(p.getProperty("password"));
+	  regpage.setConfirmPassword(p.getProperty("password"));
+	}
+	
+	@Then("the_password_and_confirm_password_fields_toggled_to_hide")
+	public void the_password_and_confirm_password_fields_toggled_to_hide()
+	{
+		String Passwordvalue=regpage.getpasswordvalue();
+		String confirmPasswordvalue=regpage.getconfirmpasswordvalue();
+		if (Passwordvalue.equals("password") && confirmPasswordvalue.equals("password")) {
+		    Assert.assertTrue("Toggled is enabled", true);
+		} else {
+		    Assert.fail("Passwords do not match the expected value 'password'.");
+		}
+		
 	}
 }
  
