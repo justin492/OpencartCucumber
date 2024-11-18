@@ -33,8 +33,8 @@ public class BaseClass {
 		
 		if(executionEnv.equalsIgnoreCase("remote"))
 		{
-			Runtime.getRuntime().exec("cmd /c start Stop_dockergrid.bat");
-		    Thread.sleep(15000);
+			//Runtime.getRuntime().exec("cmd /c start Stop_dockergrid.bat");
+		   // Thread.sleep(15000);
 		      
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			
@@ -81,9 +81,9 @@ public class BaseClass {
 				switch(browser.toLowerCase()) 
 				{
 				case "chrome":
-					//ChromeOptions chromeOptions = new ChromeOptions();
-	            	// chromeOptions.addArguments("--headless=new");
-			        driver=new ChromeDriver();
+					ChromeOptions chromeOptions = new ChromeOptions();
+	            	chromeOptions.addArguments("--headless=new");
+			        driver=new ChromeDriver(chromeOptions);
 			        break;
 			    case "edge":
 			    	driver=new EdgeDriver();

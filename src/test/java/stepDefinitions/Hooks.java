@@ -31,13 +31,13 @@ public class Hooks {
 	}
 		
     
-    @After
-    public void tearDown() throws IOException, InterruptedException {
+   // @After
+   // public void tearDown() throws IOException, InterruptedException {
         		
      //  driver.quit();
-       Runtime.getRuntime().exec("cmd /c start Stop_dockergrid.bat");
-      Thread.sleep(15000);
-    }
+       //Runtime.getRuntime().exec("cmd /c start Stop_dockergrid.bat");
+      //Thread.sleep(15000);
+   // }
     
 
     @AfterStep
