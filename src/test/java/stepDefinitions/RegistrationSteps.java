@@ -36,6 +36,7 @@ public class RegistrationSteps {
      public RegistrationSteps() {
     	 
          regpage = new AccountRegistrationPage(BaseClass.getDriver()); 
+         lp=new LoginPage(BaseClass.getDriver());
      }
      
 	@Given("the user clicks on Myaccount drop Menu")
@@ -262,14 +263,16 @@ public class RegistrationSteps {
 	@When("the user enters values in password and confirm password fields")
 	public void the_user_enters_values_in_password_and_confirm_password_fields() throws IOException
 	{
+	  BaseClass.getLogger().info("the user enters values in password and confirm password fields");
 	  p=BaseClass.getProperties();
 	  regpage.setPassword(p.getProperty("password"));
 	  regpage.setConfirmPassword(p.getProperty("password"));
 	}
 	
-	@Then("the_password_and_confirm_password_fields_toggled_to_hide")
+	@Then("the password and confirm password fields toggled to hide")
 	public void the_password_and_confirm_password_fields_toggled_to_hide()
 	{
+		BaseClass.getLogger().info("checking password and confirm password fields toggled to hide");
 		String Passwordvalue=regpage.getpasswordvalue();
 		String confirmPasswordvalue=regpage.getconfirmpasswordvalue();
 		if (Passwordvalue.equals("password") && confirmPasswordvalue.equals("password")) {
@@ -278,6 +281,21 @@ public class RegistrationSteps {
 		    Assert.fail("Passwords do not match the expected value 'password'.");
 		}
 		
+	
+	}
+	@When("the user clicks random link")
+	public void the_user_clicks_random_link()
+	{
+		BaseClass.getLogger().info("the user clicks random link");
+		regpage.clickloginlk();
+	}
+	
+	@Then("link should navigate to the respective pages")
+	public void link_should_navigate_to_the_respective_pages()
+	{
+		BaseClass.getLogger().info("link should navigate to the respective pages");
+		boolean getpagetitle=lp.Loginpagetitle();
+		Assert.assertEquals(true, getpagetitle);
 	}
 }
  

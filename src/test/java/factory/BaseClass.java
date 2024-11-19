@@ -81,9 +81,9 @@ public class BaseClass {
 				switch(browser.toLowerCase()) 
 				{
 				case "chrome":
-					ChromeOptions chromeOptions = new ChromeOptions();
-	            	chromeOptions.addArguments("--headless=new");
-			        driver=new ChromeDriver(chromeOptions);
+					//ChromeOptions chromeOptions = new ChromeOptions();
+	            	//chromeOptions.addArguments("--headless=new");
+			        driver=new ChromeDriver();
 			        break;
 			    case "edge":
 			    	driver=new EdgeDriver();

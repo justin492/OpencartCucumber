@@ -1,29 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: testRunner.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 40.34 s <<< FAILURE! -- in testRunner.TestRunner
-Account Registration.checking password and confirm password is value is toggled to hide -- Time elapsed: 29.61 s <<< ERROR!
-org.openqa.selenium.TimeoutException: 
-timeout: Timed out receiving message from renderer: 4.627
-  (Session info: chrome=130.0.6723.119)
-Build info: version: '4.22.0', revision: 'c5f3146703*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [d94a6e8d3c315c1a2bc44321df61dbe5, get {url=https://naveenautomationlabs.com/opencart/}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.119, chrome: {chromedriverVersion: 130.0.6723.116 (6ac35f94ae3..., userDataDir: C:\Users\DELL\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54840}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54840/devtoo..., se:cdpVersion: 130.0.6723.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d94a6e8d3c315c1a2bc44321df61dbe5
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
-	at stepDefinitions.Hooks.setup(Hooks.java:28)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 37.38 s <<< FAILURE! -- in testRunner.TestRunner
+Account Registration.Examine the links when user clicks navigating the pages from Register page -- Time elapsed: 25.26 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "pageObjects.LoginPage.Loginpagetitle()" because "this.lp" is null
+	at stepDefinitions.RegistrationSteps.link_should_navigate_to_the_respective_pages(RegistrationSteps.java:296)
+	at ✽.link should navigate to the respective pages(file:///E:/eclipse/OpencartCucumber/./Features/Registration.feature:133)
 

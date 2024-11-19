@@ -26,6 +26,9 @@ public class LoginPage extends BasePage {
 	
 	@FindBy(xpath="//a[@class='list-group-item'][normalize-space()='Register']")
 	WebElement Registerlink;
+	
+	@FindBy(xpath="//h2[normalize-space()='Returning Customer']")
+	WebElement Pageheader;
 
 
 	public void setEmail(String email) {
@@ -49,6 +52,11 @@ public class LoginPage extends BasePage {
 	public void clickRegisterlink()
 	{
 		Registerlink.click();
+	}
+	
+	public boolean Loginpagetitle()
+	{
+		return Pageheader.isDisplayed();
 	}
 
 }

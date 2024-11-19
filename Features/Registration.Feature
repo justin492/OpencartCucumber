@@ -103,7 +103,7 @@ Feature: Account Registration
      And the user selects Privacy Policy
      And the user clicks on Continue button
      Then the warning Message should be displayed for not following password complexity type
-    @sanity
+    @functional
     Scenario: Leading and trailing spaces should be removed on sucessful account creation
     Given the user clicks on Myaccount drop Menu
     When the user clicks on Register option
@@ -118,10 +118,17 @@ Feature: Account Registration
     When the user clicks on Register option
     Then the privacy policy should not selected by default
     
-    @Master
+    @sanity
     Scenario: checking password and confirm password is value is toggled to hide
     Given the user clicks on Myaccount drop Menu
     When  the user clicks on Register option
     And   the user enters values in password and confirm password fields
     Then  the password and confirm password fields toggled to hide
+    
+    @Master
+    Scenario: Examine the links when user clicks navigating the pages from Register page
+    Given     the user clicks on Myaccount drop Menu
+    When      the user clicks on Register option
+    And       the user clicks random link
+    Then      link should navigate to the respective pages
     

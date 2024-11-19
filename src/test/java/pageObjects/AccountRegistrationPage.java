@@ -71,6 +71,9 @@ public class AccountRegistrationPage extends BasePage {
 		
 		@FindBy(xpath="//div[@class='text-danger']")
 		WebElement PasswordMismatchError;	
+		
+		@FindBy(xpath="//a[normalize-space()='login page']")
+		WebElement Loginlk;
 
 		public void setFirstName(String fname) {
 			txtFirstname.sendKeys(fname);
@@ -170,5 +173,10 @@ public class AccountRegistrationPage extends BasePage {
 		public String getconfirmpasswordvalue()
 		{
 			return txtConfirmPassword.getAttribute("type");
+		}
+		
+		public void clickloginlk()
+		{
+			Loginlk.click();
 		}
 }
